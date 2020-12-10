@@ -15,5 +15,8 @@
 
 (add-to-list 'default-frame-alist '(font . "Victor Mono-10"))
 (load-theme 'solarized-light t)
+(setq inhibit-startup-screen t)
+
+(setq c-default-style "stroustrup")
 
 (server-start)
