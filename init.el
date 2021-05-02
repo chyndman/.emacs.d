@@ -13,7 +13,7 @@
 (dolist (package '(solarized-theme))
   (unless (package-installed-p package) (package-install package)))
 
-(add-to-list 'default-frame-alist '(font . "Victor Mono-10"))
+(add-to-list 'default-frame-alist '(font . "MonoLisa-10"))
 (load-theme 'solarized-light t)
 (setq inhibit-startup-screen t)
 
