@@ -5,12 +5,12 @@
 (require 'better-defaults)
 
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 (unless package-archive-contents (package-refresh-contents))
 
-(dolist (package '(solarized-theme))
+(dolist (package '(solarized-theme adoc-mode))
   (unless (package-installed-p package) (package-install package)))
 
 (add-to-list 'default-frame-alist '(font . "MonoLisa-10"))
