@@ -19,4 +19,6 @@
 
 (setq c-default-style "stroustrup")
 
+(setq org-adapt-indentation nil)
+
 (server-start)
