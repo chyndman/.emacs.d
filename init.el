@@ -10,7 +10,7 @@
 
 (unless package-archive-contents (package-refresh-contents))
 
-(dolist (package '(solarized-theme adoc-mode))
+(dolist (package '(solarized-theme))
   (unless (package-installed-p package) (package-install package)))
 
 (add-to-list 'default-frame-alist '(font . "MonoLisa-10"))
