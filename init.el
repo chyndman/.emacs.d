@@ -16,12 +16,17 @@
 (package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 
-;; Install packages
-(dolist (package '(solarized-theme))
-  (unless (package-installed-p package) (package-install package)))
+;; use-package install
+(unless (package-installed-p 'use-package) (package-install 'use-package))
 
-;; Use installed theme
-(load-theme 'solarized-light t)
+;; Use packages if use-package is available
+(when (package-installed-p 'use-package)
+  (require 'use-package)
+
+  (use-package solarized-theme
+    :ensure t
+    :config
+    (load-theme 'solarized-light t)))
 
 ;; Start server
 (server-start)
