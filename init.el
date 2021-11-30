@@ -8,7 +8,7 @@
 (setq inhibit-startup-screen t
       auto-save-default nil
       c-default-style "stroustrup")
-(add-to-list 'default-frame-alist '(font . "MonoLisa-10"))
+(set-face-attribute 'default nil :family "MonoLisa")
 
 ;; package bootstrap
 (require 'package)
@@ -26,7 +26,10 @@
   (use-package solarized-theme
     :ensure t
     :config
-    (load-theme 'solarized-light t)))
+    (load-theme 'solarized-light t))
+
+  (when (package-installed-p 'cider)
+    (use-package cider)))
 
 ;; Start server
 (server-start)
