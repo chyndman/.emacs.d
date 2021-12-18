@@ -23,10 +23,10 @@
 (when (package-installed-p 'use-package)
   (require 'use-package)
 
-  (use-package solarized-theme
+  (use-package doom-themes
     :ensure t
     :config
-    (load-theme 'solarized-light t))
+    (load-theme 'doom-vibrant t))
 
   (when (package-installed-p 'cider)
     (use-package cider)))
