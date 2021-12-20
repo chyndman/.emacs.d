@@ -2,6 +2,8 @@
 ;; SPDX-License-Identifier: BSD-3-Clause
 
 ;; Core UI/behavior (mostly selected from better-defaults)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
