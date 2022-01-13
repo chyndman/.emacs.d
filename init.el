@@ -54,10 +54,10 @@
     (("C-s" . swiper)
      ("C-r" . swiper)))
 
-  (use-package doom-themes
+  (use-package darktooth-theme
     :ensure t
     :config
-    (load-theme 'doom-vibrant t))
+    (load-theme 'darktooth t))
 
   (use-package markdown-mode
     :ensure t
