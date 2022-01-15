@@ -20,6 +20,7 @@
 
 ;; Font
 (set-face-attribute 'default nil :family "MonoLisa")
+(set-face-attribute 'fixed-pitch nil :family "MonoLisa")
 
 ;; package bootstrap
 (require 'package)
@@ -62,7 +63,9 @@
   (use-package markdown-mode
     :ensure t
     :init
-    (setq markdown-header-scaling t))
+    (setq markdown-header-scaling t)
+    :config
+    (set-face-attribute 'markdown-header-face nil :family "MonoLisa"))
 
   (when (package-installed-p 'cider)
     (use-package cider)))
