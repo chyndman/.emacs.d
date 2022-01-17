@@ -19,8 +19,13 @@
       auto-save-default nil)
 
 ;; Font
-(set-face-attribute 'default nil :family "MonoLisa")
-(set-face-attribute 'fixed-pitch nil :family "MonoLisa")
+(defun init-font (fonts)
+  (when fonts
+    (if (not (find-font (font-spec :name (car fonts))))
+        (init-font (cdr fonts))
+      (set-face-attribute 'default nil :family (car fonts))
+      (set-face-attribute 'fixed-pitch nil :family (car fonts)))))
+(init-font '("MonoLisa" "JetBrains Mono" "Cascadia Code"))
 
 ;; package bootstrap
 (require 'package)
@@ -55,10 +60,10 @@
     (("C-s" . swiper)
      ("C-r" . swiper)))
 
-  (use-package darktooth-theme
+  (use-package base16-theme
     :ensure t
     :config
-    (load-theme 'darktooth t))
+    (load-theme 'base16-oceanicnext t))
 
   (use-package markdown-mode
     :ensure t
