@@ -44,8 +44,7 @@
     :ensure t
     :config
     (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t
-          enable-recursive-minibuffers t))
+    (setq ivy-use-virtual-buffers t))
 
   (use-package counsel
     :after ivy
