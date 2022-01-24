@@ -72,8 +72,14 @@
     :config
     (set-face-attribute 'markdown-header-face nil :family "MonoLisa"))
 
-  (when (package-installed-p 'cider)
-    (use-package cider)))
+  (when (package-installed-p 'eglot-fsharp)
+    (use-package eglot-fsharp
+      :ensure t
+      :custom
+      (eglot-fsharp-server-version "0.49.6")
+      :config
+      (require 'fsharp-mode)
+      (require 'eglot-fsharp))))
 
 ;; C/C++
 (setq c-default-style "stroustrup")
