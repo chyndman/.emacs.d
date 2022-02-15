@@ -18,6 +18,9 @@
       inhibit-startup-screen t
       auto-save-default nil)
 
+;; Theme
+(load-theme 'deeper-blue t)
+
 ;; Font
 (defun init-font (fonts)
   (when fonts
@@ -58,11 +61,6 @@
     :bind
     (("C-s" . swiper)
      ("C-r" . swiper)))
-
-  (use-package base16-theme
-    :ensure t
-    :config
-    (load-theme 'base16-oceanicnext t))
 
   (use-package markdown-mode
     :ensure t
