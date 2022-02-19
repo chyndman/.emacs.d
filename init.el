@@ -1,7 +1,7 @@
 ;; Copyright (c) 2020, Chris Hyndman
 ;; SPDX-License-Identifier: BSD-3-Clause
 
-;; Core UI/behavior (mostly selected from better-defaults)
+;; Core UI/behavior
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -9,6 +9,7 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 (show-paren-mode t)
+(column-number-mode t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq-default indent-tabs-mode nil)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -16,7 +17,10 @@
 (setq visible-bell nil
       ring-bell-function 'ignore
       inhibit-startup-screen t
-      auto-save-default nil)
+      auto-save-default nil
+      mouse-wheel-progressive-speed nil)
+(add-to-list 'default-frame-alist '(width . 132))
+(add-to-list 'default-frame-alist '(height . 42))
 
 ;; Theme
 (load-theme 'deeper-blue t)
@@ -67,7 +71,7 @@
     :init
     (setq markdown-header-scaling t)
     :config
-    (set-face-attribute 'markdown-header-face nil :family "MonoLisa"))
+    (set-face-attribute 'markdown-header-face nil :inherit '(fixed-pitch-face font-lock-function-name-face)))
 
   (when (package-installed-p 'eglot-fsharp)
     (use-package eglot-fsharp
