@@ -1,0 +1,12 @@
+[submodule "contrib/async"]
+	path = contrib/async
+	url = https://github.com/jwiegley/emacs-async.git
+[submodule "contrib/popup"]
+	path = contrib/popup
+	url = https://github.com/auto-complete/popup-el.git
+[submodule "contrib/helm"]
+	path = contrib/helm
+	url = https://github.com/emacs-helm/helm.git
+[submodule "contrib/markdown-mode"]
+	path = contrib/markdown-mode
+	url = https://github.com/jrblevin/markdown-mode.git

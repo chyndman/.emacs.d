@@ -20,9 +20,6 @@
       auto-save-default nil
       mouse-wheel-progressive-speed nil)
 
-;; Theme
-(load-theme 'deeper-blue t)
-
 ;; Font
 (defun init-font (fonts)
   (when fonts
@@ -39,30 +36,24 @@
 ;; Start server
 (server-start)
 
-;; package setup
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-(unless package-archive-contents (package-refresh-contents))
-(unless (package-installed-p 'use-package) (package-install 'use-package))
-(require 'use-package)
+;; contrib load paths
+(let ((default-directory (concat user-emacs-directory "contrib")))
+  (normal-top-level-add-to-load-path
+   '("async"
+     "popup"
+     "helm"
+     "markdown-mode")))
 
 ;; Helm
-(use-package helm
-  :ensure t
-  :bind
-  (("M-x" . helm-M-x)
-   ("C-x r b" . helm-filtered-bookmarks)
-   ("C-x C-f" . helm-find-files)
-   ("C-x C-b" . helm-buffers-list)
-   ("M-s o" . helm-occur))
-  :config
-  (helm-mode 1))
+(require 'helm)
+(helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "M-s o") 'helm-occur)
 
 ;; Markdown
-(use-package markdown-mode
-  :ensure t
-  :init
-  (setq markdown-header-scaling t)
-  :config
-  (set-face-attribute 'markdown-header-face nil :inherit '(fixed-pitch-face font-lock-function-name-face)))
+(require 'markdown-mode)
+(setq markdown-header-scaling t)
+(set-face-attribute 'markdown-header-face nil :inherit '(fixed-pitch-face font-lock-function-name-face))
