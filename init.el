@@ -19,6 +19,7 @@
       inhibit-startup-screen t
       auto-save-default nil
       mouse-wheel-progressive-speed nil)
+(global-unset-key (kbd "C-x C-z"))
 
 ;; Font
 (defun init-font (fonts)
@@ -45,15 +46,20 @@
      "markdown-mode")))
 
 ;; Helm
+(require 'helm-bookmark)
+(require 'helm-ring)
 (require 'helm-command)
 (require 'helm-mode)
 (require 'helm)
-(helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "M-s o") 'helm-occur)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
+(helm-mode 1)
 
 ;; Markdown
 (require 'markdown-mode)
