@@ -45,6 +45,8 @@
      "markdown-mode")))
 
 ;; Helm
+(require 'helm-command)
+(require 'helm-mode)
 (require 'helm)
 (helm-mode 1)
 (global-set-key (kbd "M-x") 'helm-M-x)
