@@ -26,9 +26,9 @@
   (when fonts
     (if (not (find-font (font-spec :name (car fonts))))
         (init-font (cdr fonts))
-      (set-face-attribute 'default nil :family (car fonts))
+      (set-face-attribute 'default nil :family (car fonts) :height 110)
       (set-face-attribute 'fixed-pitch nil :family (car fonts)))))
-(init-font '("MonoLisa"
+(init-font '("IBM Plex Mono"
              "Cascadia Code"))
 
 ;; C/C++
@@ -43,7 +43,8 @@
    '("async"
      "popup"
      "helm"
-     "markdown-mode")))
+     "markdown-mode"
+     "go-mode")))
 
 ;; Helm
 (require 'helm-bookmark)
@@ -65,3 +66,8 @@
 (require 'markdown-mode)
 (setq markdown-header-scaling t)
 (set-face-attribute 'markdown-header-face nil :inherit '(fixed-pitch-face font-lock-function-name-face))
+
+;; Go
+(autoload 'go-mode "go-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
