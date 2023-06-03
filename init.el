@@ -3,9 +3,10 @@
 
 ;; Core
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(horizontal-scroll-bar-mode -1)
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (horizontal-scroll-bar-mode -1))
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (show-paren-mode t)
@@ -22,11 +23,12 @@
 (global-unset-key (kbd "C-x C-z"))
 
 ;; Font
-(let ((font "Julia Mono"))
-  (when (find-font (font-spec :name font))
-    (set-face-attribute 'default nil :family font)
-    (set-face-attribute 'fixed-pitch nil :family font)))
-(set-face-attribute 'default nil :height 110)
+(when (display-graphic-p)
+  (let ((font "Julia Mono"))
+    (when (find-font (font-spec :name font))
+      (set-face-attribute 'default nil :family font)
+      (set-face-attribute 'fixed-pitch nil :family font)))
+  (set-face-attribute 'default nil :height 110))
 
 ;; Theming
 (setq onehalf-light-colors
@@ -46,8 +48,9 @@
   (set-face-background face (alist-get color onehalf-light-colors)))
 (defun init-fg-color (face color)
   (set-face-foreground face (alist-get color onehalf-light-colors)))
-(init-bg-color 'default 'background)
-(init-fg-color 'default 'foreground)
+(when (display-graphic-p)
+  (init-bg-color 'default 'background)
+  (init-fg-color 'default 'foreground))
 (init-fg-color 'font-lock-comment-delimiter-face 'comment)
 (init-fg-color 'font-lock-comment-face 'comment)
 (init-fg-color 'font-lock-doc-face 'comment)
