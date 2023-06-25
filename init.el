@@ -1,6 +1,3 @@
-;; Copyright (c) 2020, Chris Hyndman
-;; SPDX-License-Identifier: BSD-3-Clause
-
 ;; Core
 (menu-bar-mode -1)
 (when (display-graphic-p)
