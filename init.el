@@ -77,7 +77,8 @@
      "popup"
      "helm"
      "markdown-mode"
-     "go-mode")))
+     "go-mode"
+     "rust-mode")))
 
 ;; Helm
 (require 'helm-bookmark)
@@ -104,3 +105,7 @@
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
+
+;; Rust
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
