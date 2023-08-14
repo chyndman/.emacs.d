@@ -84,9 +84,6 @@
 ;; C/C++
 (setq c-default-style "stroustrup")
 
-;; Start server
-(server-start)
-
 ;; contrib load paths
 (let ((default-directory (concat user-emacs-directory "contrib")))
   (normal-top-level-add-to-load-path
