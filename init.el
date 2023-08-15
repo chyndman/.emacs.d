@@ -78,7 +78,7 @@
 (init-face-fg 'font-lock-preprocessor-face 'yellow)
 (init-face-fg 'font-lock-string-face 'green)
 (init-face-fg 'font-lock-type-face 'yellow)
-(init-face-fg 'font-lock-variable-name-face 'foreground)
+(set-face-foreground 'font-lock-variable-name-face nil)
 (init-face-bg 'region 'selection)
 
 ;; C/C++
