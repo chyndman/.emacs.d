@@ -16,3 +16,6 @@
 [submodule "contrib/rust-mode"]
 	path = contrib/rust-mode
 	url = https://github.com/rust-lang/rust-mode.git
+[submodule "contrib/doom-themes"]
+	path = contrib/doom-themes
+	url = https://github.com/doomemacs/themes.git
