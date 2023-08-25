@@ -19,6 +19,11 @@
       mouse-wheel-progressive-speed nil)
 (global-unset-key (kbd "C-x C-z"))
 
+;; Flymake
+(require 'flymake)
+(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+
 ;; Font
 (when (display-graphic-p)
   (defun init-font (fonts)
