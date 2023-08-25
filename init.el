@@ -80,6 +80,8 @@
 (init-face-fg 'font-lock-type-face 'yellow)
 (set-face-foreground 'font-lock-variable-name-face nil)
 (init-face-bg 'region 'selection)
+(when (not (display-graphic-p))
+  (init-face-fg 'minibuffer-prompt 'blue))
 
 ;; C/C++
 (setq c-default-style "stroustrup")
@@ -109,6 +111,10 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
 (helm-mode 1)
+(when (not (display-graphic-p))
+  (set-face-background 'helm-selection "brightgreen")
+  (set-face-background 'helm-selection-line "brightgreen")
+  (set-face-background 'helm-source-header "brightblue"))
 
 ;; Markdown
 (require 'markdown-mode)
