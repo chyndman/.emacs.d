@@ -86,7 +86,7 @@
 ;; GUI Theme
 (when (display-graphic-p)
   (require 'doom-themes)
-  (load-theme 'doom-opera-light t))
+  (load-theme 'doom-tomorrow-night t))
 
 ;; Terminal Theme
 (when (not (display-graphic-p))
