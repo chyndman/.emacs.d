@@ -18,6 +18,8 @@
       auto-save-default nil
       mouse-wheel-progressive-speed nil)
 (global-unset-key (kbd "C-x C-z"))
+(global-unset-key (kbd "C-z"))
+(setq frame-background-mode 'dark)
 
 ;; Flymake
 (require 'flymake)
@@ -32,8 +34,8 @@
           (init-font (cdr fonts))
         (set-face-attribute 'default nil :family (car fonts))
         (set-face-attribute 'fixed-pitch nil :family (car fonts)))))
-  (init-font '("JuliaMono"
-               "Julia Mono"
+  (init-font '("IntelOneMono"
+               "Intel One Mono"
                "CascadiaCode"
                "Cascadia Code"
                "NotoMono"
@@ -42,13 +44,30 @@
 ;; contrib load paths
 (let ((default-directory (concat user-emacs-directory "contrib")))
   (normal-top-level-add-to-load-path
-   '("doom-themes"
-     "async"
+   '("async"
      "popup"
      "helm"
      "markdown-mode"
      "go-mode"
      "rust-mode")))
+
+;; GUI Theme
+(when (display-graphic-p)
+  (load-theme 'deeper-blue t))
+
+;; Terminal Theme
+(when (not (display-graphic-p))
+  (set-face-foreground 'font-lock-comment-delimiter-face "brightblack")
+  (set-face-foreground 'font-lock-comment-face "brightblack")
+  (set-face-foreground 'font-lock-doc-face "brightblack")
+  (set-face-foreground 'font-lock-builtin-face "cyan")
+  (set-face-foreground 'font-lock-constant-face "magenta")
+  (set-face-foreground 'font-lock-function-name-face "cyan")
+  (set-face-foreground 'font-lock-keyword-face "blue")
+  (set-face-foreground 'font-lock-preprocessor-face "blue")
+  (set-face-foreground 'font-lock-string-face "green")
+  (set-face-foreground 'font-lock-type-face "yellow")
+  (set-face-foreground 'font-lock-variable-name-face "red"))
 
 ;; Helm
 (require 'helm-bookmark)
@@ -65,6 +84,7 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
 (helm-mode 1)
+(set-face-attribute 'helm-source-header nil :family 'unspecified :height 'unspecified)
 
 ;; C/C++
 (setq c-default-style "stroustrup")
@@ -82,28 +102,3 @@
 ;; Rust
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
-
-;; GUI Theme
-(when (display-graphic-p)
-  (require 'doom-themes)
-  (load-theme 'doom-tomorrow-night t))
-
-;; Terminal Theme
-(when (not (display-graphic-p))
-  (set-face-foreground 'font-lock-comment-delimiter-face "brightblack")
-  (set-face-foreground 'font-lock-comment-face "brightblack")
-  (set-face-foreground 'font-lock-doc-face "brightblack")
-  (set-face-foreground 'font-lock-builtin-face "cyan")
-  (set-face-foreground 'font-lock-constant-face "magenta")
-  (set-face-foreground 'font-lock-function-name-face "cyan")
-  (set-face-foreground 'font-lock-keyword-face "blue")
-  (set-face-foreground 'font-lock-preprocessor-face "blue")
-  (set-face-foreground 'font-lock-string-face "green")
-  (set-face-foreground 'font-lock-type-face "yellow")
-  (set-face-foreground 'font-lock-variable-name-face "red")
-  (set-face-background 'region "brightblue")
-  (set-face-foreground 'minibuffer-prompt "blue")
-  (set-face-background 'helm-selection "brightgreen")
-  (set-face-background 'helm-selection-line "brightgreen")
-  (set-face-foreground 'helm-source-header "white")
-  (set-face-background 'helm-source-header "brightblue"))
