@@ -25,14 +25,18 @@
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "C-z"))
 
-;; Flymake
-(with-eval-after-load "flymake"
-  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
+;; Theme
+(let ((color-count (display-color-cells)))
+  (if (<= 256 color-count)
+      (progn
+        (load-theme 'deeper-blue t)
+        (if (= 256 color-count)
+            (set-face-attribute 'default nil :background "black")))
+    (when (<= 16 color-count)
+      (set-face-attribute 'mode-line-inactive nil :foreground "brightblack"))))
 
-;; GUI Theme, Font
+;; Font
 (when (display-graphic-p)
-  (load-theme 'deeper-blue t)
   (defun init-font (fonts)
     (when fonts
       (if (not (find-font (font-spec :name (car fonts))))
@@ -46,19 +50,10 @@
                "NotoMono"
                "Noto Mono")))
 
-;; Terminal Theme
-(when (not (display-graphic-p))
-  (set-face-foreground 'font-lock-comment-delimiter-face "brightblack")
-  (set-face-foreground 'font-lock-comment-face "brightblack")
-  (set-face-foreground 'font-lock-doc-face "brightblack")
-  (set-face-foreground 'font-lock-builtin-face "cyan")
-  (set-face-foreground 'font-lock-constant-face "magenta")
-  (set-face-foreground 'font-lock-function-name-face "cyan")
-  (set-face-foreground 'font-lock-keyword-face "blue")
-  (set-face-foreground 'font-lock-preprocessor-face "blue")
-  (set-face-foreground 'font-lock-string-face "green")
-  (set-face-foreground 'font-lock-type-face "yellow")
-  (set-face-foreground 'font-lock-variable-name-face "red"))
+;; Flymake
+(with-eval-after-load "flymake"
+  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
 ;; Ivy
 (add-contrib-path "swiper")
