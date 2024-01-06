@@ -44,9 +44,7 @@
 ;; contrib load paths
 (let ((default-directory (concat user-emacs-directory "contrib")))
   (normal-top-level-add-to-load-path
-   '("async"
-     "popup"
-     "helm"
+   '("swiper"
      "markdown-mode"
      "go-mode"
      "rust-mode")))
@@ -69,22 +67,22 @@
   (set-face-foreground 'font-lock-type-face "yellow")
   (set-face-foreground 'font-lock-variable-name-face "red"))
 
-;; Helm
-(require 'helm-bookmark)
-(require 'helm-ring)
-(require 'helm-command)
-(require 'helm-mode)
-(require 'helm)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "M-s o") 'helm-occur)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-h SPC") 'helm-all-mark-rings)
-(helm-mode 1)
-(set-face-attribute 'helm-source-header nil :family 'unspecified :height 'unspecified)
+;; Ivy
+(require 'counsel)
+(ivy-mode 1)
+(global-set-key (kbd "C-s") 'swiper-isearch)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "M-y") 'counsel-yank-pop)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "<f2> j") 'counsel-set-variable)
+(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+(global-set-key (kbd "C-c v") 'ivy-push-view)
+(global-set-key (kbd "C-c V") 'ivy-pop-view)
 
 ;; C/C++
 (setq c-default-style "stroustrup")
