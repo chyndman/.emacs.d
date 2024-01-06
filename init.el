@@ -1,33 +1,38 @@
+;; Ensure early-init
+(when (version< emacs-version "27")
+  (load (concat user-emacs-directory "early-init.el")))
+
+;; add-contrib-path
+(defun add-contrib-path (name)
+  (add-to-list 'load-path (concat user-emacs-directory "contrib/" name)))
+
 ;; Core
-(menu-bar-mode -1)
-(when (display-graphic-p)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (horizontal-scroll-bar-mode -1))
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (show-paren-mode t)
 (column-number-mode t)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq-default indent-tabs-mode nil)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory)
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
+      auto-save-default nil
       visible-bell nil
       ring-bell-function 'ignore
       inhibit-startup-screen t
-      auto-save-default nil
+      initial-scratch-message nil
+      initial-major-mode 'fundamental-mode
       mouse-wheel-progressive-speed nil)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "C-z"))
-(setq frame-background-mode 'dark)
 
 ;; Flymake
-(require 'flymake)
-(define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-(define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error)
+(with-eval-after-load "flymake"
+  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
-;; Font
+;; GUI Theme, Font
 (when (display-graphic-p)
+  (load-theme 'deeper-blue t)
   (defun init-font (fonts)
     (when fonts
       (if (not (find-font (font-spec :name (car fonts))))
@@ -40,18 +45,6 @@
                "Cascadia Code"
                "NotoMono"
                "Noto Mono")))
-
-;; contrib load paths
-(let ((default-directory (concat user-emacs-directory "contrib")))
-  (normal-top-level-add-to-load-path
-   '("swiper"
-     "markdown-mode"
-     "go-mode"
-     "rust-mode")))
-
-;; GUI Theme
-(when (display-graphic-p)
-  (load-theme 'deeper-blue t))
 
 ;; Terminal Theme
 (when (not (display-graphic-p))
@@ -68,6 +61,7 @@
   (set-face-foreground 'font-lock-variable-name-face "red"))
 
 ;; Ivy
+(add-contrib-path "swiper")
 (require 'counsel)
 (ivy-mode 1)
 (global-set-key (kbd "C-s") 'swiper-isearch)
@@ -88,15 +82,17 @@
 (setq c-default-style "stroustrup")
 
 ;; Markdown
-(require 'markdown-mode)
-(setq markdown-header-scaling t)
-(set-face-attribute 'markdown-header-face nil :inherit '(fixed-pitch-face font-lock-function-name-face))
+(add-contrib-path "markdown-mode")
+(autoload 'gfm-mode "markdown-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
 
 ;; Go
+(add-contrib-path "go-mode")
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
 
 ;; Rust
+(add-contrib-path "rust-mode")
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
