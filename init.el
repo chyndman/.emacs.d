@@ -90,6 +90,7 @@
 (add-contrib-path "go-mode")
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-to-list 'auto-mode-alist '("go\\.mod\\'" . go-mode))
 (add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
 
 ;; Rust
