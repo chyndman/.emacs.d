@@ -20,7 +20,8 @@
       mouse-wheel-progressive-speed nil)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (when (display-graphic-p) (global-set-key (kbd "C-x C-z") 'ignore))
-(global-set-key (kbd "C-z") 'point-to-register)
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-r") 'point-to-register)
 (global-set-key (kbd "C-q") 'jump-to-register)
 
 ;; Theme
@@ -58,7 +59,6 @@
 (require 'counsel)
 (ivy-mode 1)
 (global-set-key (kbd "C-s") 'swiper-isearch)
-(global-unset-key (kbd "C-r"))
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "M-y") 'counsel-yank-pop)
