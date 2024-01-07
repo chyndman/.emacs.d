@@ -17,9 +17,6 @@
       auto-save-default nil
       visible-bell nil
       ring-bell-function 'ignore
-      inhibit-startup-screen t
-      initial-scratch-message nil
-      initial-major-mode 'fundamental-mode
       mouse-wheel-progressive-speed nil)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-unset-key (kbd "C-x C-z"))
