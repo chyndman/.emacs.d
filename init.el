@@ -18,21 +18,22 @@
       visible-bell nil
       ring-bell-function 'ignore
       mouse-wheel-progressive-speed nil)
+
+;; Keymap
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (when (display-graphic-p) (global-set-key (kbd "C-x C-z") 'ignore))
 (global-unset-key (kbd "C-z"))
-(global-set-key (kbd "C-r") 'point-to-register)
+(global-set-key (kbd "C-t") 'point-to-register)
 (global-set-key (kbd "C-q") 'jump-to-register)
+(progn
+  (define-prefix-command 'my-misc-map)
+  (define-key my-misc-map (kbd "x") 'xref-find-apropos)
+  (global-set-key (kbd "M-t") my-misc-map))
 
 ;; Theme
-(let ((color-count (display-color-cells)))
-  (if (<= 256 color-count)
-      (progn
-        (load-theme 'deeper-blue t)
-        (if (= 256 color-count)
-            (set-face-attribute 'default nil :background "black")))
-    (when (<= 16 color-count)
-      (set-face-attribute 'mode-line-inactive nil :foreground "brightblack"))))
+(load-theme 'deeper-blue t)
+(when (<= (display-color-cells) 256)
+  (set-face-attribute 'default nil :background "black"))
 
 ;; Font
 (when (display-graphic-p)
@@ -58,19 +59,7 @@
 (add-contrib-path "swiper")
 (require 'counsel)
 (ivy-mode 1)
-(global-set-key (kbd "C-s") 'swiper-isearch)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "M-y") 'counsel-yank-pop)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "<f2> j") 'counsel-set-variable)
-(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-(global-set-key (kbd "C-c v") 'ivy-push-view)
-(global-set-key (kbd "C-c V") 'ivy-pop-view)
+(counsel-mode 1)
 
 ;; C/C++
 (setq c-default-style "stroustrup")
