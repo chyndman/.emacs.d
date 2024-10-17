@@ -2,10 +2,6 @@
 (when (version< emacs-version "27")
   (load (concat user-emacs-directory "early-init.el")))
 
-;; add-contrib-path
-(defun add-contrib-path (name)
-  (add-to-list 'load-path (concat user-emacs-directory "contrib/" name)))
-
 ;; Core
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -55,9 +51,15 @@
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
+;; take-pkg
+(defun take-pkg (pkg file)
+  (unless (package-installed-p pkg)
+    (package-install-file (concat user-emacs-directory "contrib/" file))))
+
 ;; Ivy
-(add-contrib-path "swiper")
-(require 'counsel)
+(take-pkg 'ivy "ivy-0.14.2.tar")
+(take-pkg 'swiper "swiper-0.14.2.tar")
+(take-pkg 'counsel "counsel-0.14.2.tar")
 (ivy-mode 1)
 (counsel-mode 1)
 
@@ -65,18 +67,11 @@
 (setq c-default-style "stroustrup")
 
 ;; Markdown
-(add-contrib-path "markdown-mode")
-(autoload 'gfm-mode "markdown-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+(take-pkg 'markdown-mode "markdown-mode-2.6.tar")
 
 ;; Go
-(add-contrib-path "go-mode")
-(autoload 'go-mode "go-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-(add-to-list 'auto-mode-alist '("go\\.mod\\'" . go-mode))
+(take-pkg 'go-mode "go-mode-1.6.0.tar")
 (add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
 
 ;; Rust
-(add-contrib-path "rust-mode")
-(autoload 'rust-mode "rust-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(take-pkg 'rust-mode "rust-mode-1.0.6.tar")
