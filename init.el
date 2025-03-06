@@ -13,7 +13,7 @@
       auto-save-default nil
       visible-bell nil
       ring-bell-function 'ignore
-      confirm-kill-emacs #'yes-or-no-p
+      confirm-kill-emacs #'y-or-n-p
       mouse-wheel-progressive-speed nil)
 
 ;; Keymap
