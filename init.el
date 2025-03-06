@@ -20,8 +20,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (when (display-graphic-p) (global-set-key (kbd "C-x C-z") 'ignore))
 (global-unset-key (kbd "C-z"))
-(global-set-key (kbd "M-=") 'point-to-register)
-(global-set-key (kbd "C-=") 'jump-to-register)
+(global-set-key (kbd "M-=") (lambda () (interactive) (jump-to-register ?=)))
 
 ;; Theme
 (load-theme 'deeper-blue t)
