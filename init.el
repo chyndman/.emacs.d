@@ -13,18 +13,15 @@
       auto-save-default nil
       visible-bell nil
       ring-bell-function 'ignore
+      confirm-kill-emacs #'yes-or-no-p
       mouse-wheel-progressive-speed nil)
 
 ;; Keymap
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (when (display-graphic-p) (global-set-key (kbd "C-x C-z") 'ignore))
 (global-unset-key (kbd "C-z"))
-(global-set-key (kbd "C-t") 'point-to-register)
-(global-set-key (kbd "C-q") 'jump-to-register)
-(progn
-  (define-prefix-command 'my-misc-map)
-  (define-key my-misc-map (kbd "x") 'xref-find-apropos)
-  (global-set-key (kbd "M-t") my-misc-map))
+(global-set-key (kbd "M-=") 'point-to-register)
+(global-set-key (kbd "C-=") 'jump-to-register)
 
 ;; Theme
 (load-theme 'deeper-blue t)
@@ -62,6 +59,9 @@
 (take-pkg 'counsel "counsel-0.14.2.tar")
 (ivy-mode 1)
 (counsel-mode 1)
+(global-set-key (kbd "C-s") 'swiper-isearch)
+(global-set-key (kbd "C-r") 'swiper-backward)
+(global-set-key (kbd "C-c i") 'counsel-imenu)
 
 ;; C/C++
 (setq c-default-style "stroustrup")
