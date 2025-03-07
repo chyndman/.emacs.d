@@ -7,6 +7,7 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (show-paren-mode t)
 (column-number-mode t)
+(recentf-mode t)
 (setq-default indent-tabs-mode nil)
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory)
       backup-directory-alist `(("." . ,(concat user-emacs-directory "backups")))
@@ -17,10 +18,9 @@
       mouse-wheel-progressive-speed nil)
 
 ;; Keymap
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(when (display-graphic-p) (global-set-key (kbd "C-x C-z") 'ignore))
 (global-unset-key (kbd "C-z"))
-(global-set-key (kbd "M-=") (lambda () (interactive) (jump-to-register ?=)))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-r") 'recentf-open)
 
 ;; Theme
 (load-theme 'deeper-blue t)
@@ -60,7 +60,6 @@
 (counsel-mode 1)
 (global-set-key (kbd "C-s") 'swiper-isearch)
 (global-set-key (kbd "C-r") 'swiper-backward)
-(global-set-key (kbd "C-c i") 'counsel-imenu)
 
 ;; C/C++
 (setq c-default-style "stroustrup")
