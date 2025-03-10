@@ -24,8 +24,8 @@
 
 ;; Theme
 (load-theme 'deeper-blue t)
-(when (<= (display-color-cells) 256)
-  (set-face-attribute 'default nil :background "black"))
+(set-face-attribute 'font-lock-comment-face nil :foreground "#808080")
+(set-face-attribute 'font-lock-comment-delimiter-face nil :foreground "#808080")
 
 ;; Font
 (when (display-graphic-p)
