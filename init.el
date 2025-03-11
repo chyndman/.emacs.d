@@ -50,15 +50,22 @@
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
-;; take-pkg
-(defun take-pkg (pkg file)
-  (unless (package-installed-p pkg)
-    (package-install-file (concat user-emacs-directory "contrib/" file))))
+;; Packages
+(defun refresh-pkgs-maybe (pkgs)
+  (when pkgs
+    (if (package-installed-p (car pkgs))
+        (refresh-pkgs-maybe (cdr pkgs))
+      (package-refresh-contents))))
+(let ((pkgs '(counsel
+              markdown-mode
+              go-mode
+              rust-mode)))
+  (refresh-pkgs-maybe pkgs)
+  (dolist (pkg pkgs)
+    (unless (package-installed-p pkg)
+      (package-install pkg))))
 
-;; Ivy
-(take-pkg 'ivy "ivy-0.14.2.tar")
-(take-pkg 'swiper "swiper-0.14.2.tar")
-(take-pkg 'counsel "counsel-0.14.2.tar")
+;; Ivy/Counsel/Swiper
 (ivy-mode 1)
 (counsel-mode 1)
 (global-set-key (kbd "C-s") 'swiper-isearch)
@@ -67,12 +74,5 @@
 ;; C/C++
 (setq c-default-style "stroustrup")
 
-;; Markdown
-(take-pkg 'markdown-mode "markdown-mode-2.6.tar")
-
 ;; Go
-(take-pkg 'go-mode "go-mode-1.6.0.tar")
 (add-hook 'go-mode-hook (lambda () (setq-local tab-width 4)))
-
-;; Rust
-(take-pkg 'rust-mode "rust-mode-1.0.6.tar")
