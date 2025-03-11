@@ -40,7 +40,10 @@
                "CascadiaCode"
                "Cascadia Code"
                "NotoMono"
-               "Noto Mono")))
+               "Noto Mono"))
+  (when (find-font (font-spec :name "Noto Color Emoji"))
+    (set-fontset-font
+     t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend)))
 
 ;; Flymake
 (with-eval-after-load "flymake"
