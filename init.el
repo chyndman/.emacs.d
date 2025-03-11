@@ -27,6 +27,7 @@
 
 ;; Font
 (ignore-errors (set-frame-font "Intel One Mono"))
+(set-face-attribute 'fixed-pitch nil :family 'unspecified)
 
 ;; Packages
 (defun refresh-pkgs-maybe (pkgs)
