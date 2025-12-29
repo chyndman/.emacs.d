@@ -14,6 +14,7 @@
 
 ;; Keymap
 (global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
