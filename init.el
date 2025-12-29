@@ -10,6 +10,7 @@
       visible-bell nil
       ring-bell-function 'ignore
       mouse-wheel-progressive-speed nil
+      server-kill-new-buffers nil
       c-default-style "stroustrup")
 
 ;; Keymap
