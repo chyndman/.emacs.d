@@ -11,7 +11,8 @@
       ring-bell-function 'ignore
       mouse-wheel-progressive-speed nil
       server-kill-new-buffers nil
-      c-default-style "stroustrup")
+      flymake-fringe-indicator-position 'right-fringe
+      flymake-margin-indicator-position 'right-margin)
 
 ;; Keymap
 (global-unset-key (kbd "C-z"))
@@ -24,14 +25,18 @@
 (ignore-errors (set-frame-font "Intel One Mono"))
 (set-face-attribute 'fixed-pitch nil :family 'unspecified)
 
+;; C/C++
+(add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
+(setq c-default-style "stroustrup")
+
 ;; Packages
-(unless (package-installed-p 'counsel)
+(unless (package-installed-p 'markdown-mode)
   (package-refresh-contents)
-  (package-install 'markdown-mode)
-  (package-install 'counsel))
+  (package-install 'counsel)
+  (package-install 'markdown-mode))
 
 ;; Ivy/Counsel/Swiper
 (ivy-mode 1)
 (counsel-mode 1)
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "C-r") 'swiper-backward)
+(global-set-key (kbd "C-s") 'swiper-isearch)
+(global-set-key (kbd "C-r") 'swiper-isearch-C-r)
