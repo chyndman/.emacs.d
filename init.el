@@ -1,3 +1,11 @@
+;; Theme/Font
+(load-theme 'modus-vivendi t)
+(unless (display-graphic-p)
+  (set-face-attribute 'default nil :background "unspecified-bg"))
+(when (display-graphic-p)
+  (ignore-errors (set-frame-font "Intel One Mono")))
+(set-face-attribute 'fixed-pitch nil :family 'unspecified)
+
 ;; Core
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -20,10 +28,9 @@
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
-
-;; Font
-(ignore-errors (set-frame-font "Intel One Mono"))
-(set-face-attribute 'fixed-pitch nil :family 'unspecified)
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 
 ;; C/C++
 (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
@@ -38,5 +45,8 @@
 ;; Ivy/Counsel/Swiper
 (ivy-mode 1)
 (counsel-mode 1)
-(global-set-key (kbd "C-s") 'swiper-isearch)
-(global-set-key (kbd "C-r") 'swiper-isearch-C-r)
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-r") 'swiper-C-r)
+
+;; Markdown
+(setq markdown-header-scaling t)
