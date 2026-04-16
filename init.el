@@ -19,8 +19,11 @@
       ring-bell-function 'ignore
       mouse-wheel-progressive-speed nil
       server-kill-new-buffers nil
+      isearch-lazy-count t
       flymake-fringe-indicator-position 'right-fringe
       flymake-margin-indicator-position 'right-margin)
+(fido-vertical-mode 1)
+(if (functionp 'which-key-mode) (which-key-mode 1))
 
 ;; Keymap
 (global-unset-key (kbd "C-z"))
@@ -28,25 +31,24 @@
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
+
+;; Org
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
+(setq org-archive-location "archive.org::"
+      org-archive-file-header-format nil
+      org-archive-save-context-info nil
+      org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
 
 ;; C/C++
 (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
 (setq c-default-style "stroustrup")
-
-;; Packages
-(unless (package-installed-p 'markdown-mode)
-  (package-refresh-contents)
-  (package-install 'counsel)
-  (package-install 'markdown-mode))
-
-;; Ivy/Counsel/Swiper
-(ivy-mode 1)
-(counsel-mode 1)
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "C-r") 'swiper-C-r)
+(require 'cmake-mode nil 'noerror)
 
 ;; Markdown
-(setq markdown-header-scaling t)
+(when (>= emacs-major-version 29)
+  (use-package markdown-mode
+    :ensure t
+    :init
+    (setq markdown-header-scaling t)))
