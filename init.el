@@ -1,10 +1,21 @@
-;; Theme/Font
-(load-theme 'modus-vivendi t)
+;; Theme
+(setq modus-themes-common-palette-overrides
+      '((border-mode-line-active bg-mode-line-active)
+        (border-mode-line-inactive bg-mode-line-inactive)))
+(setq modus-vivendi-palette-overrides '((bg-main "unspecified-bg")))
 (unless (display-graphic-p)
-  (set-face-attribute 'default nil :background "unspecified-bg"))
+  (load-theme 'modus-vivendi t))
 (when (display-graphic-p)
-  (ignore-errors (set-frame-font "Intel One Mono")))
+  (load-theme 'modus-operandi t))
 (set-face-attribute 'fixed-pitch nil :family 'unspecified)
+
+;; use-package fallback
+(unless (fboundp 'use-package)
+  (defmacro use-package (&rest _args) "use-package fallback"))
+
+;; Custom
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file) (load custom-file 't))
 
 ;; Core
 (require 'uniquify)
@@ -12,8 +23,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (setq-default indent-tabs-mode nil)
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory)
-      auto-save-default nil
+(setq auto-save-default nil
       make-backup-files nil
       visible-bell nil
       ring-bell-function 'ignore
@@ -23,7 +33,6 @@
       flymake-fringe-indicator-position 'right-fringe
       flymake-margin-indicator-position 'right-margin)
 (fido-vertical-mode 1)
-(if (functionp 'which-key-mode) (which-key-mode 1))
 
 ;; Keymap
 (global-unset-key (kbd "C-z"))
@@ -47,8 +56,5 @@
 (require 'cmake-mode nil 'noerror)
 
 ;; Markdown
-(when (>= emacs-major-version 29)
-  (use-package markdown-mode
-    :ensure t
-    :init
-    (setq markdown-header-scaling t)))
+(use-package markdown-mode
+  :ensure t)
