@@ -2,7 +2,7 @@ alias ecn="emacsclient -n"
 alias ect="emacsclient -t"
 alias enw="emacs -nw"
 
-which -s emacsclient && export EDITOR="$(which -s emacsclient) -t --alternate-editor="
+/usr/bin/which -s emacsclient && export EDITOR="$(which -s emacsclient) -t --alternate-editor="
 
 autoload -Uz add-zsh-hook
 _precmd_title() { print -Pn "\e]0;%1~\a" }
