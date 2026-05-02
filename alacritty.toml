@@ -6,7 +6,8 @@ padding.y = 8
 normal.family = "Ubuntu Mono"
 size = 15
 [cursor]
-style.blinking = "Never"
+style.blinking = "Always"
+blink_interval = 500
 
 [[keyboard.bindings]]
 key = "Return"
