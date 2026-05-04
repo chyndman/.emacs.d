@@ -9,10 +9,6 @@
   (load-theme 'modus-operandi t))
 (set-face-attribute 'fixed-pitch nil :family 'unspecified)
 
-;; use-package fallback
-(unless (fboundp 'use-package)
-  (defmacro use-package (&rest _args) "use-package fallback"))
-
 ;; Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file) (load custom-file 't))
@@ -32,7 +28,6 @@
       isearch-lazy-count t
       flymake-fringe-indicator-position 'right-fringe
       flymake-margin-indicator-position 'right-margin)
-(fido-vertical-mode 1)
 
 ;; Keymap
 (global-unset-key (kbd "C-z"))
@@ -54,6 +49,12 @@
 (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
 (setq c-default-style "stroustrup")
 (require 'cmake-mode nil 'noerror)
+
+;; MCT
+(use-package mct
+  :ensure t
+  :config
+  (mct-mode 1))
 
 ;; Markdown
 (use-package markdown-mode
