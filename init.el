@@ -1,17 +1,12 @@
-;; Theme
-(setq modus-themes-common-palette-overrides
-      '((border-mode-line-active bg-mode-line-active)
-        (border-mode-line-inactive bg-mode-line-inactive)))
-(setq modus-vivendi-palette-overrides '((bg-main "unspecified-bg")))
-(unless (display-graphic-p)
-  (load-theme 'modus-vivendi t))
-(when (display-graphic-p)
-  (load-theme 'modus-operandi t))
-(set-face-attribute 'fixed-pitch nil :family 'unspecified)
-
 ;; Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file) (load custom-file 't))
+
+;; Homebrew
+(when (eq system-type 'darwin)
+  (let ((default-directory "/opt/homebrew/share/emacs/site-lisp/"))
+    (when (file-directory-p default-directory)
+      (normal-top-level-add-subdirs-to-load-path))))
 
 ;; Core
 (require 'uniquify)
@@ -30,7 +25,6 @@
       flymake-margin-indicator-position 'right-margin)
 
 ;; Keymap
-(global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)

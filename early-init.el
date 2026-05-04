@@ -1,3 +1,6 @@
+;; GC
+(setq gc-cons-threshold (* 32 1024 1024))
+
 ;; UI
 (setq frame-inhibit-implied-resize t
       inhibit-startup-screen t
@@ -13,7 +16,7 @@
     (global-set-key (kbd "<wheel-up>") 'scroll-down-line)
     (global-set-key (kbd "<wheel-down>") 'scroll-up-line)))
 
-;; Homebrew
-(let ((default-directory "/opt/homebrew/share/emacs/site-lisp/"))
-  (when (file-directory-p default-directory)
-    (normal-top-level-add-subdirs-to-load-path)))
+;; Theme
+(setq modus-vivendi-palette-overrides '((bg-main "unspecified-bg")))
+(load-theme 'modus-vivendi t)
+(set-face-attribute 'fixed-pitch nil :family 'unspecified)
