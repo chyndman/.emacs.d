@@ -34,9 +34,10 @@
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
-(setq org-archive-location "archive.org::"
-      org-archive-file-header-format nil
-      org-archive-save-context-info nil
+(global-set-key (kbd "C-c m") #'org-cycle-agenda-files)
+(setq org-directory "~/Org/"
+      org-M-RET-may-split-line '((default . nil))
+      org-insert-heading-respect-content t
       org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
 
 ;; C/C++
