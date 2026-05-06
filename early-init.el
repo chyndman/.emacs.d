@@ -10,7 +10,8 @@
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 
 ;; Theme
-(setq modus-vivendi-palette-overrides
-      '((bg-main "unspecified-bg")))
-(load-theme 'modus-vivendi t)
+(setq modus-themes-common-palette-overrides
+      '((bg-main "unspecified-bg")
+        (fg-main "unspecified-fg")))
+(load-theme 'modus-operandi-tinted t)
 (set-face-attribute 'fixed-pitch nil :family 'unspecified)
