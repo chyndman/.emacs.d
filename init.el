@@ -9,8 +9,7 @@
       (normal-top-level-add-subdirs-to-load-path))))
 
 ;; Core
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(global-hl-line-mode t)
 (show-paren-mode t)
 (column-number-mode t)
 (setq-default indent-tabs-mode nil)
@@ -19,13 +18,22 @@
       visible-bell nil
       ring-bell-function 'ignore
       mouse-wheel-progressive-speed nil
-      server-kill-new-buffers nil
+      uniquify-buffer-name-style 'post-forward-angle-brackets
       isearch-lazy-count t
+      server-kill-new-buffers nil
       flymake-fringe-indicator-position 'right-fringe
       flymake-margin-indicator-position 'right-margin)
 
-;; Keymap
+;; Input
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(when (functionp 'xterm-mouse-mode)
+  (xterm-mouse-mode t)
+  (when (eq system-type 'darwin)
+    (global-set-key (kbd "<wheel-up>") 'scroll-down-line)
+    (global-set-key (kbd "<wheel-down>") 'scroll-up-line)))
+(when (functionp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode t))
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
