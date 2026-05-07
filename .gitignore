@@ -6,6 +6,7 @@ eln-cache/
 elpa/
 export/
 ido.last
+org-persist/
 places
 projects
 recentf
