@@ -11,7 +11,6 @@
 
 ;; Theme
 (setq modus-themes-common-palette-overrides
-      '((bg-main "unspecified-bg")
-        (fg-main "unspecified-fg")))
+      '((bg-main "unspecified-bg")))
 (load-theme 'modus-operandi-tinted t)
 (set-face-attribute 'fixed-pitch nil :family 'unspecified)
