@@ -45,8 +45,7 @@
 (global-set-key (kbd "C-c m") #'org-cycle-agenda-files)
 (setq org-directory "~/Org/"
       org-M-RET-may-split-line '((default . nil))
-      org-insert-heading-respect-content t
-      org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+      org-insert-heading-respect-content t)
 
 ;; C/C++
 (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
