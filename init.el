@@ -1,8 +1,11 @@
 ;; Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file) (load custom-file 't))
+(load custom-file 't)
 
-;; Homebrew
+;; site-lisp
+(let ((default-directory (concat user-emacs-directory "site-lisp")))
+  (when (file-directory-p default-directory)
+    (normal-top-level-add-subdirs-to-load-path)))
 (when (eq system-type 'darwin)
   (let ((default-directory "/opt/homebrew/share/emacs/site-lisp/"))
     (when (file-directory-p default-directory)
@@ -24,9 +27,13 @@
       flymake-fringe-indicator-position 'right-fringe
       flymake-margin-indicator-position 'right-margin)
 
-;; Input
-(global-set-key (kbd "C-x k") 'kill-current-buffer)
+;; Keymap
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(with-eval-after-load "flymake"
+  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
+
+;; Mouse
 (when (functionp 'xterm-mouse-mode)
   (xterm-mouse-mode t)
   (when (eq system-type 'darwin)
@@ -34,9 +41,6 @@
     (global-set-key (kbd "<wheel-down>") 'scroll-up-line)))
 (when (functionp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode t))
-(with-eval-after-load "flymake"
-  (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
 ;; Org
 (global-set-key (kbd "C-c l") #'org-store-link)
