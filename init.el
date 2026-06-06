@@ -62,6 +62,16 @@
   :config
   (mct-mode 1))
 
+;; TMR
+(use-package tmr
+  :ensure t
+  :config
+  (tmr-mode-line-mode 1)
+  (define-key global-map (kbd "C-c t") #'tmr-prefix-map)
+  :custom
+  (tmr-timer-finished-functions
+   '(tmr-print-message-for-finished-timer tmr-acknowledge-minibuffer)))
+
 ;; Markdown
 (use-package markdown-mode
   :ensure t)
