@@ -28,7 +28,7 @@
       flymake-margin-indicator-position 'right-margin)
 
 ;; Keymap
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(define-key global-map (kbd "C-x C-b") 'ibuffer)
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
@@ -37,16 +37,16 @@
 (when (functionp 'xterm-mouse-mode)
   (xterm-mouse-mode t)
   (when (eq system-type 'darwin)
-    (global-set-key (kbd "<wheel-up>") 'scroll-down-line)
-    (global-set-key (kbd "<wheel-down>") 'scroll-up-line)))
+    (define-key global-map (kbd "<wheel-up>") 'scroll-down-line)
+    (define-key global-map (kbd "<wheel-down>") 'scroll-up-line)))
 (when (functionp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode t))
 
 ;; Org
-(global-set-key (kbd "C-c l") #'org-store-link)
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
-(global-set-key (kbd "C-c m") #'org-cycle-agenda-files)
+(define-key global-map (kbd "C-c l") #'org-store-link)
+(define-key global-map (kbd "C-c a") #'org-agenda)
+(define-key global-map (kbd "C-c c") #'org-capture)
+(define-key global-map (kbd "C-c m") #'org-cycle-agenda-files)
 (setq org-directory "~/Org/"
       org-M-RET-may-split-line '((default . nil))
       org-insert-heading-respect-content t)
