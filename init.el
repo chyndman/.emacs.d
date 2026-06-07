@@ -43,13 +43,19 @@
   (pixel-scroll-precision-mode t))
 
 ;; Org
-(define-key global-map (kbd "C-c l") #'org-store-link)
+(require 'org)
 (define-key global-map (kbd "C-c a") #'org-agenda)
 (define-key global-map (kbd "C-c c") #'org-capture)
-(define-key global-map (kbd "C-c m") #'org-cycle-agenda-files)
-(setq org-directory "~/Org/"
-      org-M-RET-may-split-line '((default . nil))
-      org-insert-heading-respect-content t)
+(setq org-M-RET-may-split-line '((default . nil))
+      org-insert-heading-respect-content t
+      org-agenda-files (list (concat org-directory "/bridge.org")
+                             (concat org-directory "/lobby.org")
+                             (concat org-directory "/deepstorage.org"))
+      org-refile-targets '((org-agenda-files :maxlevel . 2)
+                           (nil :maxlevel . 2))
+      org-refile-use-outline-path 'file
+      org-refile-allow-creating-parent-nodes 'confirm
+      org-default-notes-file (concat org-directory "/shuttlebay.org"))
 
 ;; C/C++
 (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
