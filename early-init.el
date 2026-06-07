@@ -9,6 +9,9 @@
 (menu-bar-mode -1)
 (if (functionp 'tool-bar-mode) (tool-bar-mode -1))
 (setq-default mode-line-end-spaces nil)
+(set-display-table-slot standard-display-table
+                        'vertical-border 
+                        (make-glyph-code ?│))
 
 ;; Theme
 (setq modus-themes-common-palette-overrides
