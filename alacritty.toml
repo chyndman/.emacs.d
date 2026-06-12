@@ -8,7 +8,7 @@ dimensions.lines = 30
 [font]
 normal.family = "IBM Plex Mono"
 normal.style = "Regular"
-bold.style = "Medium"
+bold.style = "SemiBold"
 size = 12
 
 [cursor]
