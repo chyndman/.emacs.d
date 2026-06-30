@@ -42,25 +42,27 @@
 (when (functionp 'pixel-scroll-precision-mode)
   (pixel-scroll-precision-mode t))
 
-;; Org
-(require 'org)
-(define-key global-map (kbd "C-c a") #'org-agenda)
-(define-key global-map (kbd "C-c c") #'org-capture)
-(setq org-M-RET-may-split-line '((default . nil))
-      org-insert-heading-respect-content t
-      org-agenda-files (list (concat org-directory "/bridge.org")
-                             (concat org-directory "/lobby.org")
-                             (concat org-directory "/deepstorage.org"))
-      org-refile-targets '((org-agenda-files :maxlevel . 2)
-                           (nil :maxlevel . 2))
-      org-refile-use-outline-path 'file
-      org-refile-allow-creating-parent-nodes 'confirm
-      org-default-notes-file (concat org-directory "/shuttlebay.org"))
-
 ;; C/C++
 (add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
 (setq c-default-style "stroustrup")
 (require 'cmake-mode nil 'noerror)
+
+;; Org
+(use-package org
+  :bind
+  (("C-c a" . org-agenda)
+   ("C-c c" . org-capture))
+  :custom
+  (org-M-RET-may-split-line '((default . nil)))
+  (org-insert-heading-respect-content t)
+  (org-agenda-files (list (concat org-directory "/bridge.org")
+                          (concat org-directory "/lobby.org")
+                          (concat org-directory "/deepstorage.org")))
+  (org-refile-targets '((org-agenda-files :maxlevel . 2)
+                        (nil :maxlevel . 2)))
+  (org-refile-use-outline-path 'file)
+  (org-refile-allow-creating-parent-nodes 'confirm)
+  (org-default-notes-file (concat org-directory "/shuttlebay.org")))
 
 ;; MCT
 (use-package mct
@@ -71,9 +73,10 @@
 ;; TMR
 (use-package tmr
   :ensure t
+  :bind-keymap
+  ("C-c t" . tmr-prefix-map)
   :config
   (tmr-mode-line-mode 1)
-  (define-key global-map (kbd "C-c t") #'tmr-prefix-map)
   :custom
   (tmr-timer-finished-functions
    '(tmr-print-message-for-finished-timer tmr-acknowledge-minibuffer)))
