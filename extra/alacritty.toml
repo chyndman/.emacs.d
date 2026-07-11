@@ -10,9 +10,9 @@ normal.family = "IBM Plex Mono"
 normal.style = "Regular"
 bold.style = "SemiBold"
 size = 13
+builtin_box_drawing = false
 
 [cursor]
-style.blinking = "Always"
 blink_interval = 500
 
 [[keyboard.bindings]]
@@ -91,3 +91,11 @@ blue = "#223d90"
 magenta = "#5e2baf"
 cyan = "#22676d"
 white = "#cec6bf"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#955f61"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#a440b5"
