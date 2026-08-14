@@ -53,6 +53,7 @@
   (("C-c a" . org-agenda)
    ("C-c c" . org-capture))
   :custom
+  (org-priority-lowest ?Z)
   (org-M-RET-may-split-line '((default . nil)))
   (org-insert-heading-respect-content t)
   (org-agenda-files (list (concat org-directory "/bridge.org")
