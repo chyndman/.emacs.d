@@ -57,6 +57,7 @@
   (org-priority-default ?H)
   (org-M-RET-may-split-line '((default . nil)))
   (org-insert-heading-respect-content t)
+  (org-directory (file-truename "~/org"))
   (org-agenda-files (list (concat org-directory "/bridge.org")
                           (concat org-directory "/lobby.org")
                           (concat org-directory "/deepstorage.org")))
