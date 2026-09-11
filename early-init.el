@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; GC
 (setq gc-cons-threshold (* 32 1024 1024))
 
