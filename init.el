@@ -16,6 +16,7 @@
 (show-paren-mode t)
 (column-number-mode t)
 (global-auto-revert-mode t)
+(fido-mode t)
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil
       make-backup-files nil
@@ -67,12 +68,6 @@
   (org-refile-use-outline-path 'file)
   (org-refile-allow-creating-parent-nodes 'confirm)
   (org-default-notes-file (concat org-directory "/shuttlebay.org")))
-
-;; MCT
-(use-package mct
-  :ensure t
-  :config
-  (mct-mode 1))
 
 ;; TMR
 (use-package tmr
