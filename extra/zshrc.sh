@@ -14,3 +14,15 @@ zstyle ':vcs_info:git:*' formats ' (%b)'
 setopt PROMPT_SUBST
 NEWLINE=$'\n'
 PROMPT='%F{green}%n@%m%f %F{yellow}%~%f%F{cyan}${vcs_info_msg_0_}%f${NEWLINE}$ '
+
+export PATH="$PATH:/Applications/Alacritty.app/Contents/MacOS"
+aln() {
+    local opts=(--working-directory "$PWD")
+    if [[ -n "$1" && -n "$2" ]]; then
+        opts+=(-o "window.dimensions={columns=$1,lines=$2}")
+    fi
+    alacritty msg create-window "${opts[@]}"
+}
+alias alnt="aln 120 40"
+alias alnl="aln 160 40"
+alias alnxl="aln 200 50"
