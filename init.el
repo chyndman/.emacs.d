@@ -15,6 +15,7 @@
 (global-hl-line-mode t)
 (show-paren-mode t)
 (column-number-mode t)
+(global-auto-revert-mode t)
 (setq-default indent-tabs-mode nil)
 (setq auto-save-default nil
       make-backup-files nil
