@@ -17,6 +17,8 @@
 
 ;; Theme
 (setq modus-themes-common-palette-overrides
-      '((bg-main "unspecified-bg")))
+      '((bg-main "unspecified-bg")
+        (border-mode-line-active unspecified)
+        (border-mode-line-inactive unspecified)))
 (load-theme 'modus-operandi-tinted t)
 (set-face-attribute 'fixed-pitch nil :family 'unspecified)
