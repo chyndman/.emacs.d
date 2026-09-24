@@ -33,6 +33,7 @@
 
 ;; Keymap
 (define-key global-map (kbd "C-x C-b") 'ibuffer)
+(define-key global-map (kbd "M-g x") 'xref-find-apropos)
 (with-eval-after-load "flymake"
   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
