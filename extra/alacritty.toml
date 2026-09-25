@@ -6,10 +6,8 @@ dimensions.columns = 120
 dimensions.lines = 30
 
 [font]
-normal.family = "IBM Plex Mono"
-normal.style = "Regular"
-bold.style = "SemiBold"
-size = 13
+normal.family = "Geist Mono"
+size = 12
 builtin_box_drawing = false
 
 [cursor]
