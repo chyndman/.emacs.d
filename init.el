@@ -66,13 +66,32 @@
       org-refile-allow-creating-parent-nodes 'confirm
       org-default-notes-file (concat org-directory "/shuttlebay.org"))
 
-;; Markdown
-(when (>= emacs-major-version 31)
+;; treesit
+(require 'treesit)
+(setq treesit-language-source-alist
+      '((c          . ("https://github.com/tree-sitter/tree-sitter-c" "v0.24.2"))
+        (cpp        . ("https://github.com/tree-sitter/tree-sitter-cpp" "v0.23.4"))
+        (cmake      . ("https://github.com/uyha/tree-sitter-cmake" "v0.7.5"))
+        (markdown   . ("https://github.com/tree-sitter-grammars/tree-sitter-markdown" "v0.5.3" "tree-sitter-markdown/src"))
+        (markdown-inline . ("https://github.com/tree-sitter-grammars/tree-sitter-markdown" "v0.5.3" "tree-sitter-markdown-inline/src"))
+        (bash       . ("https://github.com/tree-sitter/tree-sitter-bash" "v0.25.1"))
+        (json       . ("https://github.com/tree-sitter/tree-sitter-json" "v0.24.8"))
+        (python     . ("https://github.com/tree-sitter/tree-sitter-python" "v0.25.0"))))
+(dolist (lang-source treesit-language-source-alist)
+  (let ((lang (car lang-source)))
+    (unless (treesit-language-available-p lang)
+      (treesit-install-language-grammar lang))))
+(setq major-mode-remap-alist
+      '((c-mode          . c-ts-mode)
+        (c++-mode        . c++-ts-mode)
+        (c-or-c++-mode   . c-or-c++-ts-mode)
+        (cmake-mode      . cmake-ts-mode)
+        (markdown-mode   . markdown-ts-mode)
+        (sh-mode         . bash-ts-mode)
+        (json-mode       . json-ts-mode)
+        (js-json-mode    . json-ts-mode)
+        (python-mode     . python-ts-mode)))
+(when (= emacs-major-version 31)
   (require 'markdown-ts-mode-x nil 'noerror)
   (dolist (re '("\\.md\\'" "\\.mdx\\'" "\\.markdown\\'"))
     (add-to-list 'auto-mode-alist (cons re 'markdown-ts-mode))))
-
-;; C/C++
-(add-to-list 'auto-mode-alist '("\\.cppm\\'" . c++-mode))
-(setq c-default-style "stroustrup")
-(require 'cmake-mode nil 'noerror)
