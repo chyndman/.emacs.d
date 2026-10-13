@@ -5,13 +5,12 @@ padding.y = 8
 dimensions.columns = 120
 dimensions.lines = 30
 
-[font]
-normal.family = "Geist Mono"
-size = 13
-builtin_box_drawing = false
+[env]
+COLORTERM = "truecolor"
 
-[cursor]
-blink_interval = 500
+[font]
+normal.family = "Source Code Pro"
+size = 13
 
 [[keyboard.bindings]]
 key = "Return"
@@ -25,21 +24,21 @@ background = "#FFFCF0"
 foreground = "#100F0F"
 
 [colors.normal]
-black = "#000000"
+black = "#100F0F"
 red = "#AF3029"
 green = "#66800B"
 yellow = "#AD8301"
 blue = "#205EA6"
 magenta = "#A02F6F"
 cyan = "#24837B"
-white = "#B7B5AC"
+white = "#CECDC3"
 
 [colors.bright]
-black = "#575653"
+black = "#403E3C"
 red = "#D14D41"
 yellow = "#D0A215"
 green = "#879A39"
 blue = "#4385BE"
 magenta = "#CE5D97"
 cyan = "#3AA99F"
-white = "#FFFFFF"
+white = "#F2F0E5"

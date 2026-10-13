@@ -4,6 +4,12 @@ alias enw="emacs -nw"
 
 export EDITOR="emacsclient -t --alternate-editor="
 
+alias tme="tmux new -A -D -s"
+alias tml="tmux ls"
+tmeh() {
+    tme `basename $PWD`
+}
+
 autoload -Uz add-zsh-hook
 _precmd_title() { print -Pn "\e]0;%1~\a" }
 add-zsh-hook precmd _precmd_title
@@ -21,8 +27,8 @@ aln() {
     if [[ -n "$1" && -n "$2" ]]; then
         opts+=(-o "window.dimensions={columns=$1,lines=$2}")
     fi
-    alacritty msg create-window "${opts[@]}"
+    alacritty msg create-window "${opts[@]}" || alacrity msg create-window "${opts[@]}"
 }
 alias alnt="aln 120 40"
 alias alnl="aln 160 40"
-alias alnxl="aln 200 50"
+alias alnxl="aln 240 60"
