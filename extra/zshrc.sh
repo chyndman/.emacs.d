@@ -27,7 +27,7 @@ aln() {
     if [[ -n "$1" && -n "$2" ]]; then
         opts+=(-o "window.dimensions={columns=$1,lines=$2}")
     fi
-    alacritty msg create-window "${opts[@]}" || alacrity msg create-window "${opts[@]}"
+    alacritty msg create-window "${opts[@]}" || alacritty msg create-window "${opts[@]}"
 }
 alias alnt="aln 120 40"
 alias alnl="aln 160 40"
