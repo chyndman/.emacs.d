@@ -57,9 +57,10 @@
       org-M-RET-may-split-line '((default . nil))
       org-insert-heading-respect-content t
       org-directory (file-truename "~/org")
-      org-agenda-files (list (concat org-directory "/bridge.org")
-                             (concat org-directory "/lobby.org")
-                             (concat org-directory "/deepstorage.org"))
+      org-agenda-files (list (concat org-directory "/bridge/")
+                             (concat org-directory "/lobby/")
+                             (concat org-directory "/deepstorage/")
+                             (concat org-directory "/shuttlebay.org"))
       org-refile-targets '((org-agenda-files :maxlevel . 2)
                            (nil :maxlevel . 2))
       org-refile-use-outline-path 'file
